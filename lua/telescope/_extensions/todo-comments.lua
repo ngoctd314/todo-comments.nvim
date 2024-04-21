@@ -40,7 +40,7 @@ local function todo(opts)
       local hl = {}
 
       if start then
-        kw = (Config.keywords[kw] and kw ~= "FEAT") or kw
+        kw = Config.keywords[kw] or kw
         local icon = Config.options.keywords[kw].icon
         display = icon .. " " .. display
         table.insert(hl, { { 1, #icon + 1 }, "TodoFg" .. kw })
