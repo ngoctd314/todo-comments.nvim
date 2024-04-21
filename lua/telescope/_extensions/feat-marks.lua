@@ -11,7 +11,7 @@ local pickers = require("telescope.builtin")
 
 local function keywords_filter(opts_keywords)
   assert(not opts_keywords or type(opts_keywords) == "string", "'keywords' must be a comma separated string or nil")
-  local all_keywords = vim.tbl_keys({ FEAT = Config.keywords["FEAT"] })
+  local all_keywords = vim.tbl_keys({ FEAT = { icon = " ", color = "warning" } })
   if not opts_keywords then
     return all_keywords
   end
@@ -27,7 +27,6 @@ local function todo(opts)
   vim.list_extend(opts.vimgrep_arguments, Config.options.search.args)
 
   opts.search = Config.search_regex(keywords_filter(opts.keywords))
-  opts.search = "\b(FEAT):"
   opts.prompt_title = " Find Feat Marks"
   opts.use_regex = true
   local entry_maker = make_entry.gen_from_vimgrep(opts)
