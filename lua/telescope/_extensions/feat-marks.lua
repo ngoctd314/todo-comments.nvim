@@ -27,6 +27,7 @@ local function todo(opts)
   vim.list_extend(opts.vimgrep_arguments, Config.options.search.args)
 
   opts.search = Config.search_regex(keywords_filter(opts.keywords))
+  print(opts.search)
   opts.prompt_title = " Find Feat Marks"
   opts.use_regex = true
   local entry_maker = make_entry.gen_from_vimgrep(opts)

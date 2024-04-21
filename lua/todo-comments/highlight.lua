@@ -61,7 +61,6 @@ function M.matchFeat(str, patterns)
   end
 
   patterns = patterns or Config.hl_regex
-  print(patterns)
   if not type(patterns) == "table" then
     patterns = { patterns }
   end
