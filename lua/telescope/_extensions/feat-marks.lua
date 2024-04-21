@@ -11,7 +11,7 @@ local pickers = require("telescope.builtin")
 
 local function keywords_filter(opts_keywords)
   assert(not opts_keywords or type(opts_keywords) == "string", "'keywords' must be a comma separated string or nil")
-  local all_keywords = vim.tbl_keys(Config.keywords)
+  local all_keywords = vim.tbl_keys({ FEAT = Config.keywords["FEAT"] })
   if not opts_keywords then
     return all_keywords
   end
