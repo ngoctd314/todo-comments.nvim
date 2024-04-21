@@ -27,7 +27,7 @@ local function todo(opts)
   vim.list_extend(opts.vimgrep_arguments, Config.options.search.args)
 
   opts.search = Config.search_regex(keywords_filter(opts.keywords))
-  opts.prompt_title = "Find Todo"
+  opts.prompt_title = " Find Feat Marks"
   opts.use_regex = true
   local entry_maker = make_entry.gen_from_vimgrep(opts)
   opts.entry_maker = function(line)
@@ -35,12 +35,12 @@ local function todo(opts)
     ret.display = function(entry)
       local display = string.format("%s:%s:%s ", entry.filename, entry.lnum, entry.col)
       local text = entry.text
-      local start, finish, kw = Highlight.match(text)
+      local start, finish, kw = Highlight.matchFeat(text)
 
       local hl = {}
 
       if start then
-        kw = Config.keywords["FEAT"] or kw
+        kw = Config.keywords[kw] or kw
         local icon = Config.options.keywords[kw].icon
         display = icon .. " " .. display
         table.insert(hl, { { 1, #icon + 1 }, "TodoFg" .. kw })

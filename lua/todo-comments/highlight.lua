@@ -53,6 +53,29 @@ function M.match(str, patterns)
   end
 end
 
+function M.matchFeat(str, patterns)
+  local max_line_len = Config.options.highlight.max_line_len
+
+  if max_line_len and #str > max_line_len then
+    return
+  end
+
+  patterns = patterns or Config.hl_regex
+  print(patterns)
+  if not type(patterns) == "table" then
+    patterns = { patterns }
+  end
+
+  for _, pattern in pairs(patterns) do
+    local m = vim.fn.matchlist(str, [[\v\C]] .. pattern)
+    if #m > 1 and m[2] then
+      local kw = m[2]
+      local start = str:find(kw)
+      return start, start + #kw, kw
+    end
+  end
+end
+
 -- This method returns nil if this buf doesn't have a treesitter parser
 --- @return boolean? true or false otherwise
 function M.is_comment(buf, row, col)
