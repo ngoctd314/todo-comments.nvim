@@ -26,8 +26,8 @@ M.config = {
         { "filename", format = "{file_icon} {filename} {count}" },
       },
       sort = { { buf = 0 }, "filename", "pos", "message" },
-      -- format = "{todo_icon} {text} {pos}",
-      format = "{todo_icon} {pos}",
+      format = "{todo_icon} {text} {pos}",
+      -- format = "{todo_icon} {pos}",
     },
   },
 }
